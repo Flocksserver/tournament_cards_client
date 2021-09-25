@@ -1,0 +1,22 @@
+name: tournament_cards_website
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  font_awesome_flutter: ^8.10.0
+  url_launcher: ^5.7.2
+  rxdart: ^0.21.0
+  fluttertoast: ^7.0.4
+
+flutter:
+  uses-material-design: true
