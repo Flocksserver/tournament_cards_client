@@ -5,8 +5,10 @@ import 'package:tournament_cards_website/AppConstants.dart';
 import 'package:tournament_cards_website/domain/logic/GeneratorBLoC.dart';
 import 'package:tournament_cards_website/domain/logic/WizardBLoC.dart';
 import 'package:tournament_cards_website/domain/model/AppError.dart';
+import 'package:tournament_cards_website/domain/model/PDFGeneration.dart';
+import 'package:tournament_cards_website/domain/model/StepNavigationResponse.dart';
+import 'package:tournament_cards_website/domain/model/TournamentType.dart';
 import 'package:tournament_cards_website/ui/WebsiteAppBar.dart';
-import 'package:tournament_cards_website/ui/model/MatchType.dart';
 import 'package:tournament_cards_website/ui/wizard/ExportStep.dart';
 import 'package:tournament_cards_website/ui/wizard/PlayersStep.dart';
 import 'package:tournament_cards_website/ui/wizard/SingleDoubleStep.dart';
@@ -19,8 +21,6 @@ import 'Spinner.dart';
 class HomePage extends StatefulWidget {
   HomePage() : super();
 
-  static _HomePageState? of(BuildContext context) => context.findAncestorStateOfType<_HomePageState>();
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -30,7 +30,15 @@ class _HomePageState extends State<HomePage> {
   late WizardBLoC _wizardBLoC;
   late Size _deviceSize;
 
-  MatchType matchType = MatchType.DOUBLE;
+  PDFGeneration pdfGeneration = PDFGeneration(
+    type: TournamentType.DOUBLE,
+    numberOfPlayers: 40,
+    numberOfRounds: 12,
+    drawOption: 0,
+    numberOfTables: 12,
+    distributeOption: 0,
+    languageCode: "de",
+  );
 
   @override
   void initState() {
@@ -83,19 +91,23 @@ class _HomePageState extends State<HomePage> {
         body: Container(
             child: Column(children: [
           Expanded(
-              child: StreamBuilder<int>(
+              child: StreamBuilder<StepNavigationResponse>(
                   stream: _wizardBLoC.wizardStream,
                   builder: (context, snapshot) {
+                    if(snapshot.hasData){
+                      pdfGeneration = snapshot.data!.pdfGeneration;
+                    }
                     return WizardStepper(
-                      currentStep: snapshot.data == null ? 0 : snapshot.data!,
+                      currentStep: snapshot.hasData ? snapshot.data!.currentStep : 0,
                       steps: [
-                        SingleDoubleStep().build(context, 0, snapshot.data == null ? 0 : snapshot.data!, matchType),
-                        PlayersStep().build(context, 1, snapshot.data == null ? 0 : snapshot.data!),
-                        TablesStep().build(context, 2, snapshot.data == null ? 0 : snapshot.data!),
-                        ExportStep().build(context, 3, snapshot.data == null ? 0 : snapshot.data!),
+                        SingleDoubleStep().build(context, 0, snapshot.hasData ? snapshot.data!.currentStep : 0, pdfGeneration),
+                        PlayersStep().build(context, 1, snapshot.hasData ? snapshot.data!.currentStep : 0),
+                        TablesStep().build(context, 2, snapshot.hasData ? snapshot.data!.currentStep : 0),
+                        ExportStep().build(context, 3, snapshot.hasData ? snapshot.data!.currentStep : 0),
                       ],
                       wizardBLoC: _wizardBLoC,
                       generatorBLoC: _generatorBLoC,
+                      pdfModel: pdfGeneration,
                     );
                   })),
           SizedBox(

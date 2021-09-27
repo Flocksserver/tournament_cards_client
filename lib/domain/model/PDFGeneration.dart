@@ -1,6 +1,6 @@
 import 'package:tournament_cards_website/domain/model/TournamentType.dart';
 
-class PDFGenerationRequest {
+class PDFGeneration {
   TournamentType type;
   int numberOfPlayers;
   int numberOfRounds;
@@ -9,7 +9,7 @@ class PDFGenerationRequest {
   int distributeOption;
   String languageCode;
 
-  PDFGenerationRequest(
+  PDFGeneration(
       {required this.type,
       required this.numberOfPlayers,
       required this.numberOfRounds,

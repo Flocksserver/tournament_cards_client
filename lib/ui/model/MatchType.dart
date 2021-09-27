@@ -1,4 +1,0 @@
-enum MatchType{
-  SINGLE,
-  DOUBLE
-}

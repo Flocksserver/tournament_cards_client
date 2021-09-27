@@ -5,14 +5,14 @@ import 'package:rxdart/rxdart.dart';
 import 'package:tournament_cards_website/Injector.dart';
 import 'package:tournament_cards_website/domain/model/AppError.dart';
 import 'package:tournament_cards_website/domain/model/DownloadServiceResponse.dart';
-import 'package:tournament_cards_website/domain/model/PDFGenerationRequest.dart';
+import 'package:tournament_cards_website/domain/model/PDFGeneration.dart';
 import 'package:tournament_cards_website/domain/model/TournamentType.dart';
 import 'package:tournament_cards_website/domain/model/WasmServiceResponse.dart';
 
 class GeneratorBLoC{
 
-  final _generatePDFController = StreamController<PDFGenerationRequest>();
-  Sink<PDFGenerationRequest> get generatePDFSink => _generatePDFController.sink;
+  final _generatePDFController = StreamController<PDFGeneration>();
+  Sink<PDFGeneration> get generatePDFSink => _generatePDFController.sink;
 
   final _startDownloadController = StreamController<Uint8List>();
   Sink<Uint8List> get startDownloadSink => _startDownloadController.sink;
@@ -33,7 +33,7 @@ class GeneratorBLoC{
   }
 
 
-  void _onGeneratePDF(PDFGenerationRequest request) async{
+  void _onGeneratePDF(PDFGeneration request) async{
     _loadingSubject.add(true);
     WasmServiceResponse response;
     switch (request.type){

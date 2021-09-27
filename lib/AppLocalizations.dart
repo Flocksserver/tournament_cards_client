@@ -13,17 +13,21 @@ class AppLocalizations {
     'en': {
       'title': 'TT(C) Match Generator',
       'title_step0': 'Single / Double',
+      'step0_description': 'Would you like to play a singles or doubles tournament? Choose an option.',
       'title_step1': 'Players and Rounds',
       'title_step2': 'Tables',
       'title_step3': 'Sheet',
       'button_next': 'NEXT',
       'button_back': 'BACK',
       'button_gen': 'GENERATE',
-      'coming_soon': 'Coming soon - be curious'
+      'coming_soon': 'Coming soon - be curious',
+      'single': 'Single',
+      'double': 'Double',
     },
     'de': {
       'title': 'TT(C) Match Generator',
       'title_step0': 'Einzel / Doppel',
+      'step0_description': 'Möchtest du ein Einzel- oder Doppelturnier spielen? Wähle eine Variante.',
       'title_step1': 'Spieler und Runden',
       'title_step2': 'Tische',
       'title_step3': 'Zettel',
@@ -31,6 +35,8 @@ class AppLocalizations {
       'button_back': 'ZURÜCK',
       'button_gen': 'GENERIEREN',
       'coming_soon': 'Bald verfügbar - seid gespannt',
+      'single': 'Einzel',
+      'double': 'Doppel',
     },
   };
 
@@ -70,5 +76,17 @@ class AppLocalizations {
 
   String get comingSoon {
     return _localizedValues[locale.languageCode]!['coming_soon']!;
+  }
+
+  String get step0Description {
+    return _localizedValues[locale.languageCode]!['step0_description']!;
+  }
+
+  String get single {
+    return _localizedValues[locale.languageCode]!['single']!;
+  }
+
+  String get double {
+    return _localizedValues[locale.languageCode]!['double']!;
   }
 }

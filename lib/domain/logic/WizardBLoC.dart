@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:rxdart/rxdart.dart';
+import 'package:tournament_cards_website/domain/model/AbsoluteNavigationRequest.dart';
+import 'package:tournament_cards_website/domain/model/PDFGeneration.dart';
 import 'package:tournament_cards_website/domain/model/RelativeNavigationRequest.dart';
+import 'package:tournament_cards_website/domain/model/StepNavigationResponse.dart';
 
 enum WizardNav{
   NEXT,
@@ -13,11 +16,11 @@ class WizardBLoC{
   final _relativeNavigationController = StreamController<RelativeNavigationRequest>();
   Sink<RelativeNavigationRequest> get relativeNavigationSink => _relativeNavigationController.sink;
 
-  final _absoluteNavigationController = StreamController<int>();
-  Sink<int> get absoluteNavigationSink => _absoluteNavigationController.sink;
+  final _absoluteNavigationController = StreamController<AbsoluteNavigationRequest>();
+  Sink<AbsoluteNavigationRequest> get absoluteNavigationSink => _absoluteNavigationController.sink;
 
-  final _wizardSubject = BehaviorSubject<int>();
-  Stream<int> get wizardStream => _wizardSubject.stream;
+  final _wizardSubject = BehaviorSubject<StepNavigationResponse>();
+  Stream<StepNavigationResponse> get wizardStream => _wizardSubject.stream;
 
   int _currentStep = 0;
 
@@ -28,6 +31,7 @@ class WizardBLoC{
 
 
   void _onRelativeNavigation(RelativeNavigationRequest relativeNavigationRequest) async{
+    PDFGeneration pdfGenerationNew = relativeNavigationRequest.pdfGeneration;
     switch (relativeNavigationRequest.wizardNav){
       case WizardNav.NEXT:
         if (_currentStep < relativeNavigationRequest.numberOfSteps)
@@ -38,12 +42,12 @@ class WizardBLoC{
         _currentStep --;
         break;
     }
-    _wizardSubject.add(_currentStep);
+    _wizardSubject.add(StepNavigationResponse(currentStep: _currentStep, pdfGeneration: pdfGenerationNew));
   }
 
-  void _onAbsoluteNavigation(int step) async{
-    _currentStep = step;
-    _wizardSubject.add(_currentStep);
+  void _onAbsoluteNavigation(AbsoluteNavigationRequest absoluteNavigationRequest) async{
+    _currentStep = absoluteNavigationRequest.stepNumber;
+    _wizardSubject.add(StepNavigationResponse(currentStep: _currentStep, pdfGeneration: absoluteNavigationRequest.pdfGeneration));
   }
 
 

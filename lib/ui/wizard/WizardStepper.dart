@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tournament_cards_website/AppLocalizations.dart';
 import 'package:tournament_cards_website/domain/logic/GeneratorBLoC.dart';
 import 'package:tournament_cards_website/domain/logic/WizardBLoC.dart';
-import 'package:tournament_cards_website/domain/model/PDFGenerationRequest.dart';
+import 'package:tournament_cards_website/domain/model/AbsoluteNavigationRequest.dart';
+import 'package:tournament_cards_website/domain/model/PDFGeneration.dart';
 import 'package:tournament_cards_website/domain/model/RelativeNavigationRequest.dart';
 import 'package:tournament_cards_website/domain/model/TournamentType.dart';
 
@@ -11,8 +12,9 @@ class WizardStepper extends StatelessWidget {
   final int currentStep;
   final WizardBLoC wizardBLoC;
   final GeneratorBLoC generatorBLoC;
+  final PDFGeneration pdfModel;
 
-  WizardStepper({required this.steps, required this.currentStep, required this.wizardBLoC, required this.generatorBLoC});
+  WizardStepper({required this.steps, required this.currentStep, required this.wizardBLoC, required this.generatorBLoC, required this.pdfModel});
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +47,8 @@ class WizardStepper extends StatelessWidget {
               children: <Widget>[
                 TextButton(
                   onPressed: () =>  currentStep == steps.length - 1 ?
-                  generatorBLoC.generatePDFSink.add(PDFGenerationRequest(type: TournamentType.DOUBLE, numberOfPlayers: 40, numberOfRounds: 12, drawOption: 0, numberOfTables: 10, distributeOption: 0, languageCode: "de"))
-                      : wizardBLoC.relativeNavigationSink.add(RelativeNavigationRequest(wizardNav: WizardNav.NEXT, numberOfSteps: steps.length - 1)),
+                  generatorBLoC.generatePDFSink.add(pdfModel)
+                      : wizardBLoC.relativeNavigationSink.add(RelativeNavigationRequest(wizardNav: WizardNav.NEXT, numberOfSteps: steps.length - 1, pdfGeneration: pdfModel)),
                   style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
                       return states.contains(MaterialState.disabled) ? null : colorScheme.onPrimary;
@@ -62,7 +64,7 @@ class WizardStepper extends StatelessWidget {
                 Container(
                   margin: const EdgeInsetsDirectional.only(start: 8.0),
                   child: TextButton(
-                    onPressed: () => wizardBLoC.relativeNavigationSink.add(RelativeNavigationRequest(wizardNav: WizardNav.BACK, numberOfSteps: steps.length - 1)),
+                    onPressed: () => wizardBLoC.relativeNavigationSink.add(RelativeNavigationRequest(wizardNav: WizardNav.BACK, numberOfSteps: steps.length - 1, pdfGeneration: pdfModel)),
                     style: TextButton.styleFrom(
                       primary: cancelColor,
                       padding: buttonPadding,
@@ -76,7 +78,7 @@ class WizardStepper extends StatelessWidget {
           ),
         );
       },
-      onStepTapped: (step) => wizardBLoC.absoluteNavigationSink.add(step),
+      onStepTapped: (step) => wizardBLoC.absoluteNavigationSink.add(AbsoluteNavigationRequest(stepNumber: step, pdfGeneration: pdfModel)),
       steps: steps,
     );
   }

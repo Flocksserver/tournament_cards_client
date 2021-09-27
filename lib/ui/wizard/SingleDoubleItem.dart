@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tournament_cards_website/AppConstants.dart';
 import 'package:tournament_cards_website/AppLocalizations.dart';
-import 'package:tournament_cards_website/ui/HomePage.dart';
-import 'package:tournament_cards_website/ui/model/MatchType.dart';
-import 'package:tournament_cards_website/ui/model/SingleDoubleRadioModel.dart';
+import 'package:tournament_cards_website/domain/model/PDFGeneration.dart';
+import 'package:tournament_cards_website/domain/model/TournamentType.dart';
 
 class SingleDoubleItem extends StatelessWidget {
-  final SingleDoubleRadioModel _item;
+  final String buttonText;
+  final TournamentType type;
+  final PDFGeneration pdfModel;
 
-  SingleDoubleItem(this._item);
+  SingleDoubleItem({required this.buttonText,required this.type, required this.pdfModel });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class SingleDoubleItem extends StatelessWidget {
       child: InkWell(
         splashColor: AppConstants.mainColor,
         onTap: () {
-          if(_item.matchType == MatchType.SINGLE){
+          if(type == TournamentType.SINGLE){
             Fluttertoast.showToast(
               msg: AppLocalizations.of(context).comingSoon,
               toastLength: Toast.LENGTH_LONG,
@@ -29,8 +30,6 @@ class SingleDoubleItem extends StatelessWidget {
               timeInSecForIosWeb: 3,
               webPosition: 'center',
             );
-          }else{
-            HomePage.of(context)?.matchType = _item.matchType;
           }
 
         },
@@ -39,10 +38,10 @@ class SingleDoubleItem extends StatelessWidget {
             height: 100.0,
             width: 100.0,
             child: Center(
-              child: Text(_item.buttonText),
+              child: Text(buttonText),
             ),
             decoration: BoxDecoration(
-              border: Border.all(width: 2.0, color: _item.isSelected ? AppConstants.mainColor : AppConstants.greyColor),
+              border: Border.all(width: 2.0, color: pdfModel.type == type ? AppConstants.mainColor : AppConstants.greyColor),
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
             ),
           ),
