@@ -37,21 +37,25 @@ function webSaveAs(blob, name) {
 
 <!-- https://html.spec.whatwg.org/multipage/workers.html#module-worker-example -->
 <script type="module">
-  var worker = new Worker("wasm_worker.js", { type: "module" });
-  // Has to be here because of the dart js interop binding init_ready and pdf_ready
-  worker.onmessage = receiveFromWorker;
-  function receiveFromWorker(e) {
-    switch (e.data.command) {
-      case 'init_ready':
-        init_ready();
-        break;
-      case 'pdf_ready':
-         pdf_ready(e.data.data);
-         break;
-      default:
-    };
+
+  window.createWorker = function createWorker() {
+      var worker = new Worker("wasm_worker.js", { type: "module" });
+      // Has to be here because of the dart js interop binding init_ready and pdf_ready
+      worker.onmessage = receiveFromWorker;
+      function receiveFromWorker(e) {
+        switch (e.data.command) {
+          case 'init_ready':
+            init_ready();
+            break;
+          case 'pdf_ready':
+             pdf_ready(e.data.data);
+             break;
+          default:
+        };
+      }
+      window.wasm_worker = worker;
   }
-  window.wasm_worker = worker;
+
 
   </script>
   <!-- This script installs service_worker.js to provide PWA functionality to

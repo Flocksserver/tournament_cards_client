@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tournament_cards_website/App.dart';
 import 'package:tournament_cards_website/AppConstants.dart';
+import 'package:tournament_cards_website/AppLocalizations.dart';
 import 'package:tournament_cards_website/domain/logic/GeneratorBLoC.dart';
 import 'package:tournament_cards_website/domain/logic/WizardBLoC.dart';
 import 'package:tournament_cards_website/domain/model/AppError.dart';
@@ -64,13 +65,13 @@ class _HomePageState extends State<HomePage> {
       String msg = "";
       switch (event) {
         case AppError.WASM_ERROR:
-          // TODO: Handle this case.
+          msg = AppLocalizations.of(context).errorWasm;
           break;
         case AppError.CALL_DOWNLOAD_ERROR:
-          // TODO: Handle this case.
+          msg = AppLocalizations.of(context).errorDownload;
           break;
         case AppError.PDF_GEN_TIMEOUT:
-          // TODO: Handle this case.
+          msg = AppLocalizations.of(context).errorTimeout;
           break;
       }
       Fluttertoast.showToast(

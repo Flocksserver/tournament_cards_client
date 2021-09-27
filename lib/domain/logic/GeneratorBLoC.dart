@@ -70,7 +70,6 @@ class GeneratorBLoC{
 
 
   void dispose(){
-    Injector().wasmService.killWasm();
     _errorMessageSubject.close();
     _generatePDFController.close();
     _startDownloadController.close();

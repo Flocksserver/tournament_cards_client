@@ -33,6 +33,9 @@ class AppLocalizations {
       'button_back': 'BACK',
       'button_gen': 'GENERATE',
       'coming_soon': 'Coming soon - be curious',
+      'error_wasm': 'Error calling PDF generation - please contact Marcel Kaufmann.',
+      'error_download': 'Error downloading PDF - please contact Marcel Kaufmann.',
+      'error_timeout': 'The generation encountered a timeout. Your parameters are too hard to solve and not suitable to find an adequate solution in reasonable time.'
     },
     'de': {
       'title': 'TT(C) Match Generator',
@@ -57,6 +60,9 @@ class AppLocalizations {
       'button_back': 'ZURÜCK',
       'button_gen': 'GENERIEREN',
       'coming_soon': 'Bald verfügbar - seid gespannt',
+      'error_wasm': 'Fehler beim Generieren des PDFs - bitte kontaktiere Marcel Kaufmann.',
+      'error_download': 'Fehler beim PDF-Download - bitte kontaktiere Marcel Kaufmann.',
+      'error_timeout': 'Die Generierung dauert zu lange. Deine Eingaben zur Generierung sind zu komplex, um sie in angemessener Zeit lösen.'
     },
   };
 
@@ -81,6 +87,7 @@ class AppLocalizations {
   String get titleStep3 {
     return _localizedValues[locale.languageCode]!['title_step3']!;
   }
+
   String get titleStep4 {
     return _localizedValues[locale.languageCode]!['title_step4']!;
   }
@@ -120,6 +127,7 @@ class AppLocalizations {
   String get step2Description {
     return _localizedValues[locale.languageCode]!['step2_description']!;
   }
+
   String get step3Description {
     return _localizedValues[locale.languageCode]!['step3_description']!;
   }
@@ -136,7 +144,6 @@ class AppLocalizations {
     return _localizedValues[locale.languageCode]!['number_of_rounds']!;
   }
 
-
   String get step4Description {
     return _localizedValues[locale.languageCode]!['step4_description']!;
   }
@@ -147,5 +154,17 @@ class AppLocalizations {
 
   String get refereeSheet {
     return _localizedValues[locale.languageCode]!['referee_sheet']!;
+  }
+
+  String get errorWasm {
+    return _localizedValues[locale.languageCode]!['error_wasm']!;
+  }
+
+  String get errorDownload {
+    return _localizedValues[locale.languageCode]!['error_download']!;
+  }
+
+  String get errorTimeout {
+    return _localizedValues[locale.languageCode]!['error_timeout']!;
   }
 }
