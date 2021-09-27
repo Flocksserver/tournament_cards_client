@@ -3,6 +3,7 @@ import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tournament_cards_website/ui/HomePage.dart';
 
 import 'AppConstants.dart';
@@ -25,6 +26,10 @@ class _AppState extends State<App> {
     });
   }
 
+  Locale? getLocale() {
+    return _locale;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -43,6 +48,7 @@ class _AppState extends State<App> {
       theme: ThemeData(
         primarySwatch: AppConstants.mainColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: GoogleFonts.robotoTextTheme(Theme.of(context).textTheme)
       ),
       debugShowCheckedModeBanner: false,
       showPerformanceOverlay: false,

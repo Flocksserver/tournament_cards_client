@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tournament_cards_website/AppLocalizations.dart';
 
 class TablesStep{
   Step build(BuildContext context, int stepNumber, int currentStep) {
     return Step(
-      title: Text('Tische'),
+      title: Text(AppLocalizations.of(context).titleStep2),
       content: Column(
         children: <Widget>[
           TextFormField(

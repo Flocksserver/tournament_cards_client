@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tournament_cards_website/AppLocalizations.dart';
 
 class ExportStep{
   Step build(BuildContext context, int stepNumber, int currentStep) {
     return Step(
-      title: Text('Zettel'),
+      title: Text(AppLocalizations.of(context).titleStep3),
       content: Column(
         children: <Widget>[
           TextFormField(

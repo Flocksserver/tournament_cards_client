@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tournament_cards_website/AppConstants.dart';
+import 'package:tournament_cards_website/App.dart';
 import 'package:tournament_cards_website/AppLocalizations.dart';
+import 'package:tournament_cards_website/ui/language/LanguageItem.dart';
+import 'package:tournament_cards_website/ui/model/RadioModel.dart';
 
 class WebsiteAppBar extends StatelessWidget with PreferredSizeWidget {
   final double appBarHeight = 70.0;
@@ -31,10 +33,14 @@ class WebsiteAppBar extends StatelessWidget with PreferredSizeWidget {
                 Padding(
                   padding: EdgeInsets.fromLTRB(_deviceSize.width > _deviceSize.height ? _deviceSize.width * 0.05 : 0.0, 0.0, 0.0, 0.0),
                 ),
-                //Image.network(AppConstants.einKlangLogo, width: 95, height: 40,)
                 // Your widgets here
               ],
             ),
+            actions: <Widget>[
+              LanguageItem(RadioModel(isSelected: App.of(context)?.getLocale()?.languageCode == "de", buttonText: "de")),
+              LanguageItem(RadioModel(isSelected: App.of(context)?.getLocale()?.languageCode == "en", buttonText: "en")),
+              SizedBox(width: 30,)
+            ],
           ),
         ],
       ),

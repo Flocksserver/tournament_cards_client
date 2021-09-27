@@ -42,7 +42,6 @@ class WasmService implements WasmRepository {
 
   @override
   void killWasm() {
-    debugPrint("KILL");
     JsObject.fromBrowserObject(context['wasm_worker']).callMethod('postMessage', [
       JsObject.jsify({'command': 'stop'})
     ]);

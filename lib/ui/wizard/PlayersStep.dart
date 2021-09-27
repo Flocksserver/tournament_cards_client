@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tournament_cards_website/AppLocalizations.dart';
 
 class PlayersStep{
   Step build(BuildContext context, int stepNumber, int currentStep) {
     return Step(
-      title: Text('Spieler und Runden'),
+      title: Text(AppLocalizations.of(context).titleStep1),
       content: Column(
         children: <Widget>[
           TextFormField(

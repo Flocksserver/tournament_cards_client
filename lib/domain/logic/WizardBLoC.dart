@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:rxdart/rxdart.dart';
+import 'package:tournament_cards_website/domain/model/RelativeNavigationRequest.dart';
 
 enum WizardNav{
   NEXT,
@@ -10,8 +10,8 @@ enum WizardNav{
 
 class WizardBLoC{
 
-  final _relativeNavigationController = StreamController<WizardNav>();
-  Sink<WizardNav> get relativeNavigationSink => _relativeNavigationController.sink;
+  final _relativeNavigationController = StreamController<RelativeNavigationRequest>();
+  Sink<RelativeNavigationRequest> get relativeNavigationSink => _relativeNavigationController.sink;
 
   final _absoluteNavigationController = StreamController<int>();
   Sink<int> get absoluteNavigationSink => _absoluteNavigationController.sink;
@@ -27,20 +27,22 @@ class WizardBLoC{
   }
 
 
-  void _onRelativeNavigation(WizardNav wizardNav) async{
-    switch (wizardNav){
+  void _onRelativeNavigation(RelativeNavigationRequest relativeNavigationRequest) async{
+    switch (relativeNavigationRequest.wizardNav){
       case WizardNav.NEXT:
-        _currentStep ++;
+        if (_currentStep < relativeNavigationRequest.numberOfSteps)
+          _currentStep ++;
         break;
       case WizardNav.BACK:
-        _currentStep ++;
+        if (_currentStep != 0)
+        _currentStep --;
         break;
     }
     _wizardSubject.add(_currentStep);
   }
 
   void _onAbsoluteNavigation(int step) async{
-
+    _currentStep = step;
     _wizardSubject.add(_currentStep);
   }
 
