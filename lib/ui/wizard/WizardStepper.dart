@@ -5,7 +5,6 @@ import 'package:tournament_cards_website/domain/logic/WizardBLoC.dart';
 import 'package:tournament_cards_website/domain/model/AbsoluteNavigationRequest.dart';
 import 'package:tournament_cards_website/domain/model/PDFGeneration.dart';
 import 'package:tournament_cards_website/domain/model/RelativeNavigationRequest.dart';
-import 'package:tournament_cards_website/domain/model/TournamentType.dart';
 
 class WizardStepper extends StatelessWidget {
   final List<Step> steps;
@@ -35,16 +34,30 @@ class WizardStepper extends StatelessWidget {
     const EdgeInsets buttonPadding = EdgeInsets.symmetric(horizontal: 16.0);
 
     return Stepper(
-      type: StepperType.vertical,
+      type: StepperType.horizontal,
       physics: ScrollPhysics(),
       currentStep: currentStep,
       controlsBuilder: (BuildContext context, ControlsDetails details) {
         return Container(
-          margin: const EdgeInsets.only(top: 16.0),
+          margin: EdgeInsets.only(top: 16.0),
           child: ConstrainedBox(
             constraints: const BoxConstraints.tightFor(height: 48.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
+                Container(
+                  margin: EdgeInsetsDirectional.only(start: 8.0),
+                  child: currentStep == 0 ? Container() : TextButton(
+                    onPressed: () => wizardBLoC.relativeNavigationSink.add(RelativeNavigationRequest(wizardNav: WizardNav.BACK, numberOfSteps: steps.length - 1, pdfGeneration: pdfModel)),
+                    style: TextButton.styleFrom(
+                      primary: cancelColor,
+                      padding: buttonPadding,
+                      shape: buttonShape,
+                    ),
+                    child: Text(AppLocalizations.of(context).buttonBack),
+                  ),
+                ),
+                SizedBox(width: 16),
                 TextButton(
                   onPressed: () =>  currentStep == steps.length - 1 ?
                   generatorBLoC.generatePDFSink.add(pdfModel)
@@ -60,18 +73,6 @@ class WizardStepper extends StatelessWidget {
                     shape: MaterialStateProperty.all<OutlinedBorder>(buttonShape),
                   ),
                   child: currentStep == steps.length - 1 ? Text(AppLocalizations.of(context).buttonGen) : Text(AppLocalizations.of(context).buttonNext),
-                ),
-                Container(
-                  margin: const EdgeInsetsDirectional.only(start: 8.0),
-                  child: TextButton(
-                    onPressed: () => wizardBLoC.relativeNavigationSink.add(RelativeNavigationRequest(wizardNav: WizardNav.BACK, numberOfSteps: steps.length - 1, pdfGeneration: pdfModel)),
-                    style: TextButton.styleFrom(
-                      primary: cancelColor,
-                      padding: buttonPadding,
-                      shape: buttonShape,
-                    ),
-                    child: Text(AppLocalizations.of(context).buttonBack),
-                  ),
                 ),
               ],
             ),

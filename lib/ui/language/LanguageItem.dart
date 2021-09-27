@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tournament_cards_website/App.dart';
 import 'package:tournament_cards_website/AppConstants.dart';
-import 'package:tournament_cards_website/ui/model/RadioModel.dart';
+import 'package:tournament_cards_website/ui/language/RadioModel.dart';
 
 class LanguageItem extends StatelessWidget {
   final RadioModel _item;

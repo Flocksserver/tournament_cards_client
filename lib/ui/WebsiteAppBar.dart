@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tournament_cards_website/App.dart';
 import 'package:tournament_cards_website/AppLocalizations.dart';
 import 'package:tournament_cards_website/ui/language/LanguageItem.dart';
-import 'package:tournament_cards_website/ui/model/RadioModel.dart';
+import 'package:tournament_cards_website/ui/language/RadioModel.dart';
 
 class WebsiteAppBar extends StatelessWidget with PreferredSizeWidget {
   final double appBarHeight = 70.0;
