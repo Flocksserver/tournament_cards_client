@@ -13,7 +13,7 @@ class Spinner{
           barrierDismissible: false,
           builder: (context) => Center(
             child: CircularProgressIndicator(
-              backgroundColor: AppConstants.einKlangColor.shade400,
+              backgroundColor: AppConstants.mainColor.shade400,
             ),
           ));
       isSpinning = true;

@@ -41,7 +41,7 @@ class _AppState extends State<App> {
       ],
       title: 'TT(C) Match Generator',
       theme: ThemeData(
-        primarySwatch: AppConstants.einKlangColor,
+        primarySwatch: AppConstants.mainColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
