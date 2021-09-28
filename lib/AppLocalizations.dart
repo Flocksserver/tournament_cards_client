@@ -12,6 +12,9 @@ class AppLocalizations {
   static const _localizedValues = <String, Map<String, String>>{
     'en': {
       'title': 'TT(C) Match Generator',
+      'welcome_title': 'Welcome!',
+      'welcome_subtitle': 'Generate great sheets for your TT tournament',
+      'welcome_content': 'On this page you will find a generator, with the help of which you can create route cards or referee sheets for single or double tournaments in 5 steps. The focus is on as much variety as possible in opponents and teammates. The project is currently under construction and it is not impossible that you will find a bug or that there are still improvements to the algorithms. Feel free to write me if you have any feedback.',
       'title_step0': 'Tournament type',
       'step0_description': 'Would you like to play a singles or doubles tournament? Choose an option.',
       'single': 'Single',
@@ -39,6 +42,9 @@ class AppLocalizations {
     },
     'de': {
       'title': 'TT(C) Match Generator',
+      'welcome_title': 'Willkommen!',
+      'welcome_subtitle': 'Generiere dir passende Zettel für dein TT-Turnier',
+      'welcome_content': 'Auf dieser Seite findest du einen Generator, mit dessen Hilfe du dir in 5 Schritten Laufzettel oder Schiedsrichterzettel zu Einzel- oder Doppleturnieren erstellen kannst. Der Fokus liegt dabei auf möglichst großer Abwechselung in den Gegnern und Mitspielern. Das Projekt befindet sich aktuell im Aufbau und es ist nicht ausgeschlossen, dass du einen Fehler findest oder es noch Verbesserungen an den Algorithmen gibt. Schreib mir gerne, falls du Feedback hast.',
       'title_step0': 'Art des Turniers',
       'step0_description': 'Möchtest du ein Einzel- oder Doppelturnier spielen? Wähle eine Variante.',
       'single': 'Einzel',
@@ -167,4 +173,17 @@ class AppLocalizations {
   String get errorTimeout {
     return _localizedValues[locale.languageCode]!['error_timeout']!;
   }
+
+  String get welcomeTitle {
+    return _localizedValues[locale.languageCode]!['welcome_title']!;
+  }
+
+  String get welcomeSubtitle {
+    return _localizedValues[locale.languageCode]!['welcome_subtitle']!;
+  }
+
+  String get welcomeContent {
+    return _localizedValues[locale.languageCode]!['welcome_content']!;
+  }
+
 }

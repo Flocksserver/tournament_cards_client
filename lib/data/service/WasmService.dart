@@ -22,7 +22,7 @@ class WasmService implements WasmRepository {
   @override
   Future<bool> initWasm() {
     // https://fireship.io/snippets/using-js-with-flutter-web/
-    context['init_ready'] = (parameter) {
+    context['init_ready'] = () {
       wasmInitCompleter.complete(true);
     };
     context['pdf_ready'] = (parameter) {
@@ -32,9 +32,7 @@ class WasmService implements WasmRepository {
       wasmPDFCompleter.complete(WasmServiceResponse(success: true, response: parameter));
       killWasm();
     };
-
     context.callMethod('createWorker', []);
-
     JsObject.fromBrowserObject(context['wasm_worker']).callMethod('postMessage', [
       JsObject.jsify({'command': 'start'})
     ]);

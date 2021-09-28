@@ -29,17 +29,19 @@ class WebsiteAppBar extends StatelessWidget with PreferredSizeWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text(AppLocalizations.of(context).title),
                 Padding(
                   padding: EdgeInsets.fromLTRB(_deviceSize.width > _deviceSize.height ? _deviceSize.width * 0.05 : 0.0, 0.0, 0.0, 0.0),
+                  child: Text(AppLocalizations.of(context).title),
                 ),
                 // Your widgets here
               ],
             ),
             actions: <Widget>[
               LanguageItem(RadioModel(isSelected: App.of(context)?.getLocale()?.languageCode == "de", buttonText: "de")),
-              LanguageItem(RadioModel(isSelected: App.of(context)?.getLocale()?.languageCode == "en", buttonText: "en")),
-              SizedBox(width: 30,)
+              Padding(
+                padding: EdgeInsets.fromLTRB(0.0, 0.0,_deviceSize.width > _deviceSize.height ? _deviceSize.width * 0.05 : 30.0, 0.0),
+                child: LanguageItem(RadioModel(isSelected: App.of(context)?.getLocale()?.languageCode == "en", buttonText: "en")),
+              ),
             ],
           ),
         ],

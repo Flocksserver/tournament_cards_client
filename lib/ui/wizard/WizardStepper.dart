@@ -34,7 +34,7 @@ class WizardStepper extends StatelessWidget {
     const EdgeInsets buttonPadding = EdgeInsets.symmetric(horizontal: 16.0);
 
     return Stepper(
-      type: StepperType.horizontal,
+      type: StepperType.vertical,
       physics: ScrollPhysics(),
       currentStep: currentStep,
       controlsBuilder: (BuildContext context, ControlsDetails details) {

@@ -26,4 +26,8 @@ class AppConstants {
     query: 'subject=Feedback',
   );
 
+  // Images
+  static const String imageDir = "assets/images";
+  static const String tournamentImage = "$imageDir/tournament.jpg";
+
 }
