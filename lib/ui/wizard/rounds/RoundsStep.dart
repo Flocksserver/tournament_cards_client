@@ -7,9 +7,7 @@ class RoundsStep {
   Step build(BuildContext context, int stepNumber, int currentStep, PDFGeneration pdfGeneration, TextEditingController numberOfRoundsController) {
     return Step(
       title: Text(AppLocalizations.of(context).titleStep2),
-      content: ConstrainedBox(
-        constraints: BoxConstraints(minHeight: 200),
-        child: Column(
+      content: Column(
           children: <Widget>[
             Padding(
               padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
@@ -32,7 +30,6 @@ class RoundsStep {
             ),
           ],
         ),
-      ),
       isActive: currentStep >= stepNumber,
       state: currentStep == stepNumber ? StepState.editing : (currentStep > stepNumber ? StepState.complete : StepState.disabled),
     );
