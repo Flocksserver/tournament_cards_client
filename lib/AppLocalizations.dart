@@ -14,7 +14,9 @@ class AppLocalizations {
       'title': 'TT(C) Match Generator',
       'welcome_title': 'Welcome!',
       'welcome_subtitle': 'Generate great sheets for your TT tournament',
-      'welcome_content': 'On this page you will find a generator, with the help of which you can create route cards or referee sheets for single or double tournaments in 5 steps. The focus is on as much variety as possible in opponents and teammates. The project is currently under construction and it is not impossible that you will find a bug or that there are still improvements to the algorithms. Feel free to write me if you have any feedback.',
+      'welcome_content1': 'On this page you will find a generator, with the help of which you can create route cards or referee sheets for single or double tournaments in 5 steps. The focus is on as much variety as possible in opponents and teammates. The project is currently under construction and it is not impossible that you will find a bug or that there are still improvements to the algorithms. Feel free to write me if you have any',
+      'feedback': 'feedback',
+      'welcome_content2': '.',
       'title_step0': 'Tournament type',
       'step0_description': 'Would you like to play a singles or doubles tournament? Choose an option.',
       'single': 'Single',
@@ -44,7 +46,9 @@ class AppLocalizations {
       'title': 'TT(C) Match Generator',
       'welcome_title': 'Willkommen!',
       'welcome_subtitle': 'Generiere dir passende Zettel für dein TT-Turnier',
-      'welcome_content': 'Auf dieser Seite findest du einen Generator, mit dessen Hilfe du dir in 5 Schritten Laufzettel oder Schiedsrichterzettel zu Einzel- oder Doppleturnieren erstellen kannst. Der Fokus liegt dabei auf möglichst großer Abwechselung in den Gegnern und Mitspielern. Das Projekt befindet sich aktuell im Aufbau und es ist nicht ausgeschlossen, dass du einen Fehler findest oder es noch Verbesserungen an den Algorithmen gibt. Schreib mir gerne, falls du Feedback hast.',
+      'welcome_content1': 'Auf dieser Seite findest du einen Generator, mit dessen Hilfe du dir in 5 Schritten Laufzettel oder Schiedsrichterzettel zu Einzel- oder Doppelturnieren erstellen kannst. Der Fokus liegt dabei auf möglichst großer Abwechslung in den Gegnern und Mitspielern. Das Projekt befindet sich aktuell im Aufbau und es ist nicht ausgeschlossen, dass du einen Fehler findest oder es noch Verbesserungen an den Algorithmen gibt. Schreib mir gerne, falls du',
+      'feedback': 'Feedback',
+      'welcome_content2': 'hast.',
       'title_step0': 'Art des Turniers',
       'step0_description': 'Möchtest du ein Einzel- oder Doppelturnier spielen? Wähle eine Variante.',
       'single': 'Einzel',
@@ -65,7 +69,7 @@ class AppLocalizations {
       'button_next': 'WEITER',
       'button_back': 'ZURÜCK',
       'button_gen': 'GENERIEREN',
-      'coming_soon': 'Bald verfügbar - seid gespannt',
+      'coming_soon': 'Bald verfügbar - sei gespannt',
       'error_wasm': 'Fehler beim Generieren des PDFs - bitte kontaktiere Marcel Kaufmann.',
       'error_download': 'Fehler beim PDF-Download - bitte kontaktiere Marcel Kaufmann.',
       'error_timeout': 'Die Generierung dauert zu lange. Deine Eingaben zur Generierung sind zu komplex, um sie in angemessener Zeit lösen.'
@@ -182,8 +186,13 @@ class AppLocalizations {
     return _localizedValues[locale.languageCode]!['welcome_subtitle']!;
   }
 
-  String get welcomeContent {
-    return _localizedValues[locale.languageCode]!['welcome_content']!;
+  String get welcomeContent1 {
+    return _localizedValues[locale.languageCode]!['welcome_content1']!;
   }
-
+  String get welcomeContent2 {
+    return _localizedValues[locale.languageCode]!['welcome_content2']!;
+  }
+  String get feedback {
+    return _localizedValues[locale.languageCode]!['feedback']!;
+  }
 }

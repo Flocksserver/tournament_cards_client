@@ -1,5 +1,5 @@
 name: tournament_cards_website
-description: A new Flutter project.
+description: Single page application with a generator that helps you create awesome tournaments.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
