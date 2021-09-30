@@ -104,6 +104,7 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         child: Column(
           children: [
+            // Safari < 15 does not support module js web workers :(
             browser.browser == 'Safari' && Version.parse(browser.version) < Version(15, 0, 0)
                 ? ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: 800),
