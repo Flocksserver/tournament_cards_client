@@ -19,6 +19,7 @@ dependencies:
   fluttertoast: ^8.0.8
   google_fonts: ^2.1.0
   web_browser_detect: ^2.0.2
+  version: ^2.0.0
 
 flutter:
   uses-material-design: true

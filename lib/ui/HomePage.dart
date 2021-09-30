@@ -20,6 +20,7 @@ import 'package:tournament_cards_website/ui/wizard/rounds/RoundsStep.dart';
 import 'package:tournament_cards_website/ui/wizard/singledouble/SingleDoubleStep.dart';
 import 'package:tournament_cards_website/ui/wizard/tables/TablesStep.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:version/version.dart';
 import 'package:web_browser_detect/web_browser_detect.dart';
 
 import 'Spinner.dart';
@@ -97,19 +98,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     _deviceSize = MediaQuery.of(context).size;
 
-    String browserName = browser.browser;
-    double browserVersion = 0;
-    try {
-      browserVersion = double.parse(browser.version);
-    } catch (e) {}
-
     return Scaffold(
       appBar: WebsiteAppBar(_deviceSize),
       backgroundColor: Colors.white,
       body: Container(
         child: Column(
           children: [
-            browserName == 'Safari' && browserVersion < 15
+            browser.browser == 'Safari' && Version.parse(browser.version) < Version(15, 0, 0)
                 ? ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: 800),
                     child: Container(
