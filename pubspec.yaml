@@ -13,11 +13,12 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  font_awesome_flutter: ^8.10.0
-  url_launcher: ^5.7.2
-  rxdart: ^0.21.0
-  fluttertoast: ^7.0.4
-  google_fonts: ^1.1.1
+  font_awesome_flutter: ^9.1.0
+  url_launcher: ^5.7.10
+  rxdart: ^0.27.2
+  fluttertoast: ^8.0.8
+  google_fonts: ^2.1.0
+  web_browser_detect: ^2.0.2
 
 flutter:
   uses-material-design: true

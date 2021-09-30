@@ -37,7 +37,7 @@ class WizardStepper extends StatelessWidget {
       type: StepperType.vertical,
       physics: ScrollPhysics(),
       currentStep: currentStep,
-      controlsBuilder: (BuildContext context, ControlsDetails details) {
+      controlsBuilder: (BuildContext context, { VoidCallback? onStepContinue, VoidCallback? onStepCancel }) {
         return Container(
           margin: EdgeInsets.only(top: 16.0),
           child: ConstrainedBox(
@@ -79,6 +79,50 @@ class WizardStepper extends StatelessWidget {
           ),
         );
       },
+
+          /*(BuildContext context, ControlsDetails details) {
+        return Container(
+          margin: EdgeInsets.only(top: 16.0),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints.tightFor(height: 48.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsetsDirectional.only(start: 8.0),
+                  child: currentStep == 0 ? Container() : TextButton(
+                    onPressed: () => wizardBLoC.relativeNavigationSink.add(RelativeNavigationRequest(wizardNav: WizardNav.BACK, numberOfSteps: steps.length - 1, pdfGeneration: pdfModel)),
+                    style: TextButton.styleFrom(
+                      primary: cancelColor,
+                      padding: buttonPadding,
+                      shape: buttonShape,
+                    ),
+                    child: Text(AppLocalizations.of(context).buttonBack),
+                  ),
+                ),
+                SizedBox(width: 16),
+                TextButton(
+                  onPressed: () =>  currentStep == steps.length - 1 ?
+                  generatorBLoC.generatePDFSink.add(pdfModel)
+                      : wizardBLoC.relativeNavigationSink.add(RelativeNavigationRequest(wizardNav: WizardNav.NEXT, numberOfSteps: steps.length - 1, pdfGeneration: pdfModel)),
+                  style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+                      return states.contains(MaterialState.disabled) ? null : colorScheme.onPrimary;
+                    }),
+                    backgroundColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+                      return states.contains(MaterialState.disabled) ? null : colorScheme.primary;
+                    }),
+                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(buttonPadding),
+                    shape: MaterialStateProperty.all<OutlinedBorder>(buttonShape),
+                  ),
+                  child: currentStep == steps.length - 1 ? Text(AppLocalizations.of(context).buttonGen) : Text(AppLocalizations.of(context).buttonNext),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+      */
       onStepTapped: (step) => wizardBLoC.absoluteNavigationSink.add(AbsoluteNavigationRequest(stepNumber: step, pdfGeneration: pdfModel)),
       steps: steps,
     );

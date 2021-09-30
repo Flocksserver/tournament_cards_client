@@ -40,8 +40,10 @@ class AppLocalizations {
       'coming_soon': 'Coming soon - be curious',
       'error_wasm': 'Error calling PDF generation - please contact Marcel Kaufmann.',
       'error_download': 'Error downloading PDF - please contact Marcel Kaufmann.',
-      'error_timeout': 'The generation encountered a timeout. Your parameters are too hard to solve and not suitable to find an adequate solution in reasonable time.'
-    },
+      'error_timeout': 'The generation encountered a timeout. Your parameters are too hard to solve and not suitable to find an adequate solution in reasonable time.',
+      'error_safari': 'This website supports Safari version 15 and above. Your version is:',
+      'error_safari2': 'Please use Firefox or Chrome.'
+  },
     'de': {
       'title': 'TT(C) Match Generator',
       'welcome_title': 'Willkommen!',
@@ -65,15 +67,17 @@ class AppLocalizations {
       'title_step4': 'Zettel',
       'step4_description': 'Möchtest du Laufzettel generieren oder für jede Runde und jedes Spiel ein Schiedrichterzettel? Wähle eine Variante.',
       'route_card': 'Laufzettel',
-      'referee_sheet': 'Schiedrichterzettel',
+      'referee_sheet': 'Schiedsrichterzettel',
       'button_next': 'WEITER',
       'button_back': 'ZURÜCK',
       'button_gen': 'GENERIEREN',
       'coming_soon': 'Bald verfügbar - sei gespannt',
       'error_wasm': 'Fehler beim Generieren des PDFs - bitte kontaktiere Marcel Kaufmann.',
       'error_download': 'Fehler beim PDF-Download - bitte kontaktiere Marcel Kaufmann.',
-      'error_timeout': 'Die Generierung dauert zu lange. Deine Eingaben zur Generierung sind zu komplex, um sie in angemessener Zeit lösen.'
-    },
+      'error_timeout': 'Die Generierung dauert zu lange. Deine Eingaben zur Generierung sind zu komplex, um sie in angemessener Zeit lösen.',
+      'error_safari': 'Diese Webseite unterstützt den Safari Browser erst ab Version 15. Du verwendest:',
+      'error_safari2': 'Nutze bitte Firefox oder Chrome.'
+  },
   };
 
   static List<String> languages() => _localizedValues.keys.toList();
@@ -195,4 +199,11 @@ class AppLocalizations {
   String get feedback {
     return _localizedValues[locale.languageCode]!['feedback']!;
   }
+  String get errorSafari {
+    return _localizedValues[locale.languageCode]!['error_safari']!;
+  }
+  String get errorSafari2 {
+    return _localizedValues[locale.languageCode]!['error_safari2']!;
+  }
+
 }

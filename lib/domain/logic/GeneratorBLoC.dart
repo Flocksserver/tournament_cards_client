@@ -55,7 +55,7 @@ class GeneratorBLoC{
       if(response.success){
         _pdfSubject.add(response.response);
       } else {
-        _errorMessageSubject.add(response.error);
+        _errorMessageSubject.add(response.error!);
       }
       _loadingSubject.add(false);
 
@@ -64,7 +64,7 @@ class GeneratorBLoC{
   void _onStartDownload(Uint8List pdf) async{
     DownloadServiceResponse response = await Injector().downloadService.callDownload(pdf);
     if(response.success == false){
-      _errorMessageSubject.add(response.error);
+      _errorMessageSubject.add(response.error!);
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tournament_cards_website/App.dart';
 import 'package:tournament_cards_website/AppConstants.dart';
@@ -19,6 +20,7 @@ import 'package:tournament_cards_website/ui/wizard/rounds/RoundsStep.dart';
 import 'package:tournament_cards_website/ui/wizard/singledouble/SingleDoubleStep.dart';
 import 'package:tournament_cards_website/ui/wizard/tables/TablesStep.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:web_browser_detect/web_browser_detect.dart';
 
 import 'Spinner.dart';
 
@@ -33,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   late GeneratorBLoC _generatorBLoC;
   late WizardBLoC _wizardBLoC;
   late Size _deviceSize;
+  final browser = Browser();
 
   PDFGeneration pdfGeneration = PDFGeneration(
     type: TournamentType.DOUBLE,
@@ -93,12 +96,46 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     _deviceSize = MediaQuery.of(context).size;
+
+    String browserName = browser.browser;
+    double browserVersion = 0;
+    try {
+      browserVersion = double.parse(browser.version);
+    } catch (e) {}
+
     return Scaffold(
       appBar: WebsiteAppBar(_deviceSize),
       backgroundColor: Colors.white,
       body: Container(
         child: Column(
           children: [
+            browserName == 'Safari' && browserVersion < 15
+                ? ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: 800),
+                    child: Container(
+                        padding: EdgeInsets.only(top: 16.0),
+                        child: Card(
+                            child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Color.fromARGB(100, 255, 0, 0),
+                                child: Icon(Icons.error, color: Colors.black),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  AppLocalizations.of(context).errorSafari + " $browserVersion " + AppLocalizations.of(context).errorSafari2,
+                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            ],
+                          ),
+                        ))))
+                : Container(),
             Expanded(
                 child: SingleChildScrollView(
               child: Column(
