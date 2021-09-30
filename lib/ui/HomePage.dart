@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Flexible(
                                 child: Text(
-                                  AppLocalizations.of(context).errorSafari + " $browserVersion " + AppLocalizations.of(context).errorSafari2,
+                                  AppLocalizations.of(context).errorSafari + " ${browser.version} " + AppLocalizations.of(context).errorSafari2,
                                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                                 ),
                               )
