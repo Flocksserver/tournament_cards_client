@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             // Safari < 15 does not support module js web workers :(
-            browser.browser == 'Safari' && Version.parse(browser.version) < Version(15, 0, 0)
+            (browser.browser == 'Safari' && Version.parse(browser.version) < Version(15, 0, 0)) || browser.browser == "Firefox"
                 ? ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: 800),
                     child: Container(
@@ -124,7 +124,9 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Flexible(
                                 child: Text(
-                                  AppLocalizations.of(context).errorSafari + " ${browser.version} " + AppLocalizations.of(context).errorSafari2,
+                                  browser.browser == 'Safari'
+                                      ? AppLocalizations.of(context).errorSafari + " ${browser.version} " + AppLocalizations.of(context).errorSafari2
+                                      : AppLocalizations.of(context).errorFirefox + " " + AppLocalizations.of(context).errorFirefox2,
                                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                                 ),
                               )

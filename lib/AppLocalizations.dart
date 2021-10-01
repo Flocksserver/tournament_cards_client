@@ -42,7 +42,9 @@ class AppLocalizations {
       'error_download': 'Error downloading PDF - please contact Marcel Kaufmann.',
       'error_timeout': 'The generation encountered a timeout. Your parameters are too hard to solve and not suitable to find an adequate solution in reasonable time.',
       'error_safari': 'This website supports Safari version 15 and above. Your version is:',
-      'error_safari2': 'Please use Firefox or Chrome.'
+      'error_safari2': 'Please update Safari or use Chrome or on Edge.',
+      'error_firefox': 'Unfortunately Firefox browser does not support this website (yet).',
+      'error_firefox2': 'Please use Chrome, Edge or Safari.'
   },
     'de': {
       'title': 'TT(C) Match Generator',
@@ -76,7 +78,9 @@ class AppLocalizations {
       'error_download': 'Fehler beim PDF-Download - bitte kontaktiere Marcel Kaufmann.',
       'error_timeout': 'Die Generierung dauert zu lange. Deine Eingaben zur Generierung sind zu komplex, um sie in angemessener Zeit lösen.',
       'error_safari': 'Diese Webseite unterstützt den Safari Browser erst ab Version 15. Du verwendest:',
-      'error_safari2': 'Nutze bitte Firefox oder Chrome.'
+      'error_safari2': 'Bitte aktualisiere Safari. Alternativ nutze Chrome oder Edge.',
+      'error_firefox': 'Der Firefox Browser unterstützt diese Seite leider (noch) nicht.',
+      'error_firefox2': 'Nutze bitte Chrome, Edge oder Safari.'
   },
   };
 
@@ -205,5 +209,10 @@ class AppLocalizations {
   String get errorSafari2 {
     return _localizedValues[locale.languageCode]!['error_safari2']!;
   }
-
+  String get errorFirefox {
+    return _localizedValues[locale.languageCode]!['error_firefox']!;
+  }
+  String get errorFirefox2 {
+    return _localizedValues[locale.languageCode]!['error_firefox2']!;
+  }
 }
