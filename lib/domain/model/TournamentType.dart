@@ -1,1 +1,0 @@
-enum TournamentType { DOUBLE, SINGLE }
