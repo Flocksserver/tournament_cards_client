@@ -10,5 +10,6 @@ build-website:
 	cd website && flutter build web --no-sound-null-safety
 
 push-website:
-	make build-app
+	make build-wasm
+	make build-website
 	cd website && aws s3 sync build/web/ s3://ttc-match-generator --acl public-read --profile flocksserver

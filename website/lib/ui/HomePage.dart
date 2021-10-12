@@ -77,6 +77,9 @@ class _HomePageState extends State<HomePage> {
         case AppError.PDF_GEN_TIMEOUT:
           msg = AppLocalizations.of(context).errorTimeout;
           break;
+        case AppError.NOT_ERROR:
+          msg = AppLocalizations.of(context).errorNot;
+          break;
       }
       Fluttertoast.showToast(
         msg: msg,

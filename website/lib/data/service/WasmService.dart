@@ -43,20 +43,24 @@ class WasmService implements WasmRepository {
   Future<WasmServiceResponse> getDoubleCardsPDF(int numberOfPlayers, int numberOfRounds, int drawOption, int numberOfTables, int distributeOption, String languageCode) async {
     wasmInitCompleter = Completer();
     wasmPDFCompleter = Completer();
-    try{
-      await initWasm();
-      timeout = Timer(Duration(seconds: 60), handleTimeout);
-      JsObject.fromBrowserObject(context['wasm_worker']).callMethod('postMessage', [
-        JsObject.jsify({
-          'command': 'generateDouble',
-          'data': JsObject.jsify({ 'numberOfPlayers': numberOfPlayers , 'numberOfRounds': numberOfRounds, 'drawOption': drawOption, 'numberOfTables': numberOfTables, 'distributeOption': distributeOption,  'languageCode': languageCode }),
-        })
-      ]);
-    }catch (e){
-      if(timeout != null && timeout!.isActive){
-        timeout!.cancel();
+    if(numberOfTables > 0){
+      try{
+        await initWasm();
+        timeout = Timer(Duration(seconds: 60), handleTimeout);
+        JsObject.fromBrowserObject(context['wasm_worker']).callMethod('postMessage', [
+          JsObject.jsify({
+            'command': 'generateDouble',
+            'data': JsObject.jsify({ 'numberOfPlayers': numberOfPlayers , 'numberOfRounds': numberOfRounds, 'drawOption': drawOption, 'numberOfTables': numberOfTables, 'distributeOption': distributeOption,  'languageCode': languageCode }),
+          })
+        ]);
+      }catch (e){
+        if(timeout != null && timeout!.isActive){
+          timeout!.cancel();
+        }
+        wasmPDFCompleter.complete(WasmServiceResponse(success: false, error: AppError.WASM_ERROR));
       }
-      wasmPDFCompleter.complete(WasmServiceResponse(success: false, error: AppError.WASM_ERROR));
+    }else{
+      wasmPDFCompleter.complete(WasmServiceResponse(success: false, error: AppError.NOT_ERROR));
     }
     return wasmPDFCompleter.future;
   }

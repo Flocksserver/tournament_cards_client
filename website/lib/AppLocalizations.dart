@@ -40,6 +40,7 @@ class AppLocalizations {
       'coming_soon': 'Coming soon - be curious',
       'error_wasm': 'Error calling PDF generation - please contact Marcel Kaufmann.',
       'error_download': 'Error downloading PDF - please contact Marcel Kaufmann.',
+      'error_not': 'If you have no tables - playing a tournament is not possible.',
       'error_timeout': 'The generation encountered a timeout. Your parameters are too hard to solve and not suitable to find an adequate solution in reasonable time.',
       'error_safari': 'This website supports Safari version 15 and above. Your version is:',
       'error_safari2': 'Please update Safari or use Chrome or on Edge.',
@@ -76,6 +77,7 @@ class AppLocalizations {
       'coming_soon': 'Bald verfügbar - sei gespannt',
       'error_wasm': 'Fehler beim Generieren des PDFs - bitte kontaktiere Marcel Kaufmann.',
       'error_download': 'Fehler beim PDF-Download - bitte kontaktiere Marcel Kaufmann.',
+      'error_not': 'Wenn du keine Tisch hast, kannst du kein Turnier spielen.',
       'error_timeout': 'Die Generierung dauert zu lange. Deine Eingaben zur Generierung sind zu komplex, um sie in angemessener Zeit lösen.',
       'error_safari': 'Diese Webseite unterstützt den Safari Browser erst ab Version 15. Du verwendest:',
       'error_safari2': 'Bitte aktualisiere Safari. Alternativ nutze Chrome oder Edge.',
@@ -215,4 +217,8 @@ class AppLocalizations {
   String get errorFirefox2 {
     return _localizedValues[locale.languageCode]!['error_firefox2']!;
   }
+  String get errorNot {
+    return _localizedValues[locale.languageCode]!['error_not']!;
+  }
+
 }
