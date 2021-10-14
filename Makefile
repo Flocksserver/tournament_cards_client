@@ -1,4 +1,4 @@
-make build-wasm:
+build-wasm:
 	cd wasm && wasm-pack build --target web --out-dir ../website/web/wasm
 
 run-website:
