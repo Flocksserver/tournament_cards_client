@@ -32,12 +32,11 @@ class WizardStepper extends StatelessWidget {
 
     const OutlinedBorder buttonShape = RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2)));
     const EdgeInsets buttonPadding = EdgeInsets.symmetric(horizontal: 16.0);
-
     return Stepper(
       type: StepperType.vertical,
       physics: ScrollPhysics(),
       currentStep: currentStep,
-      controlsBuilder: (BuildContext context, { VoidCallback? onStepContinue, VoidCallback? onStepCancel }) {
+      controlsBuilder: (BuildContext context, ControlsDetails details) {
         return Container(
           margin: EdgeInsets.only(top: 16.0),
           child: ConstrainedBox(

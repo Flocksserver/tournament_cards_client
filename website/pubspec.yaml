@@ -6,7 +6,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.12.0"
 
 dependencies:
   flutter:
@@ -14,10 +14,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   font_awesome_flutter: ^9.1.0
-  url_launcher: ^5.7.10
+  url_launcher: ^6.1.12
   rxdart: ^0.27.2
   fluttertoast: ^8.0.8
-  google_fonts: ^2.1.0
+  google_fonts: ^5.1.0
   web_browser_detect: ^2.0.2
   version: ^2.0.0
 

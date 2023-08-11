@@ -3,11 +3,11 @@ build-wasm:
 
 run-website:
 	make build-wasm
-	cd website && flutter run -d chrome --no-sound-null-safety
+	cd website && flutter run -d chrome
 
 build-website:
 	make build-wasm
-	cd website && flutter build web --no-sound-null-safety
+	cd website && flutter build web
 
 push-website:
 	make build-wasm

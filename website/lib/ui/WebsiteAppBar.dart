@@ -4,7 +4,7 @@ import 'package:tournament_cards_website/AppLocalizations.dart';
 import 'package:tournament_cards_website/ui/language/LanguageItem.dart';
 import 'package:tournament_cards_website/ui/language/RadioModel.dart';
 
-class WebsiteAppBar extends StatelessWidget with PreferredSizeWidget {
+class WebsiteAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double appBarHeight = 70.0;
   final Size _deviceSize;
 
